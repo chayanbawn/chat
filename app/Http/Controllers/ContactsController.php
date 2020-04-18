@@ -21,17 +21,5 @@ class ContactsController extends Controller
         return response()->json($messages);
     }
 
-    public function store(Request $request)
-    {
-        $message =  Message::create([
-            'from' => auth()->user()->id,
-            'to' => $request->get('to'),
-            'message' => $request->get('message')
 
-        ]);
-
-        broadcast(new NewMessage($message));
-
-        return response()->json($message);
-    }
 }
